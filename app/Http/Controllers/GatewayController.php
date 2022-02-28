@@ -17,6 +17,16 @@ class GatewayController extends Controller
         $items= Gateway::with('peripherals')->get();
         return json_encode(array('gateways' => $items));
     }
+    public function add()
+    {
+        $_POST = json_decode(file_get_contents("php://input"),true);
+        $gtw = $_POST['data'];
+        $gateway['serial'] = $gtw['serial'];
+        $gateway['name'] = $gtw['name'];
+        $gateway['ipv4'] = $gtw['ipv4'];
+        $saved = Gateway::create($gateway);
+        return json_encode(array('statusCode' => 200, 'id' => $saved->id));
+    }
 
     /**
      * Show the form for creating a new resource.

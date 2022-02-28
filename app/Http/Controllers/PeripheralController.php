@@ -26,6 +26,17 @@ class PeripheralController extends Controller
     {
         //
     }
+    public function add()
+    {
+        $_POST = json_decode(file_get_contents("php://input"),true);
+        $prp = $_POST['data'];
+        $peripheral['uid'] = $prp['uid'];
+        $peripheral['vendor'] = $prp['vendor'];
+        $peripheral['status'] = $prp['status'];
+        $peripheral['gateway_id'] = $prp['gateway_id'];
+        $saved = Peripheral::create($peripheral);
+        return json_encode(array('statusCode' => 200, 'id' => $saved->id));
+    }
 
     /**
      * Store a newly created resource in storage.

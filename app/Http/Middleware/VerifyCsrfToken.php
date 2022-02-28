@@ -20,6 +20,7 @@ class VerifyCsrfToken extends Middleware
      */
     protected $except = [
         'stripe/*',
-        'http://localhost/tags/*'
+        'http://localhost/gateways/*',
+        'http://localhost/peripherals/*'
     ];
 }

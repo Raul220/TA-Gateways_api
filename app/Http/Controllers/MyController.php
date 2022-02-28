@@ -19,8 +19,8 @@ class MyController extends Controller
     }
 
     public function all() {
-        $gateways = Gateway::all();
-        return json_encode(array('statusCode' => 200, 'gateways' "safasdf"));
+        $items= Gateway::with('peripherals')->get();
+        return json_encode(array('gateways' => $items));
     }
 
     /**
@@ -39,12 +39,12 @@ class MyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store()
+    public function add()
     {
-        $_POST = json_decode(file_get_contents("php://input"),true);
-        $gt = $_POST['data'];
-        $saved = Gateway::create($gt);
-        return json_encode(array('statusCode' => 200, 'id' => $saved['id']));
+        // $_POST = json_decode(file_get_contents("php://input"),true);
+        // $gtw = $_POST['data'];
+        // $saved = Gateway::create($gt);   
+        return json_encode(array('statusCode' => 200, 'gtw' => 'hola'));
     }
     /**
      * Display the specified resource.

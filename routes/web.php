@@ -1,8 +1,5 @@
 <?php
 
-use \App\Articulo;
-use \App\Cliente;
-use \App\Calificaciones;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,5 +17,5 @@ Route::get('/', function () {
 });
 
 Route::get('/gateways', 'GatewayController@index');
-// Route::post('/gateways', 'MyController@all');
-Route::post('/gateways/add', 'MyController@add');
+Route::post('/gateways/add', 'GatewayController@add');
+Route::post('/peripherals/add', 'PeripheralController@add');
