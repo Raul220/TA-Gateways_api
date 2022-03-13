@@ -35,7 +35,7 @@ class PeripheralController extends Controller
         $peripheral['status'] = $prp['status'];
         $peripheral['gateway_id'] = $prp['gateway_id'];
         $saved = Peripheral::create($peripheral);
-        return json_encode(array('statusCode' => 200, 'id' => $saved->id));
+        return json_encode(array('statusCode' => 200, 'item' => $saved));
     }
 
     /**
@@ -55,7 +55,7 @@ class PeripheralController extends Controller
      * @param  \App\Peripheral  $peripheral
      * @return \Illuminate\Http\Response
      */
-    public function show(Peripheral $peripheral)
+    public function show()
     {
         //
     }

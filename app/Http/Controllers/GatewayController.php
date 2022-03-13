@@ -55,9 +55,14 @@ class GatewayController extends Controller
      * @param  \App\Gateway  $gateway
      * @return \Illuminate\Http\Response
      */
-    public function show(Gateway $gateway)
+    public function show()
     {
-        //
+        $_POST = json_decode(file_get_contents("php://input"),true);
+        $prp = $_POST['id'];
+        $id = (int)$prp;
+        $gateway = Gateway::find($id);
+        $peripherals = $gateway->peripherals;
+        return json_encode(array('statusCode' => 200, 'gateway' => $gateway));
     }
 
     /**
@@ -78,9 +83,18 @@ class GatewayController extends Controller
      * @param  \App\Gateway  $gateway
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Gateway $gateway)
+    public function update()
     {
-        //
+        $_POST = json_decode(file_get_contents("php://input"),true);
+        $gtw = $_POST['data'];
+        $id = (int)$gtw['id'];
+        $new['serial'] = $gtw['serial'];
+        $new['name'] = $gtw['name'];
+        $new['ipv4'] = $gtw['ipv4'];
+        $gateway = Gateway::findOrFail($id);
+        $gateway->update($new);
+        $gateway->peripherals()->delete();
+        return json_encode(array('statusCode' => 200));
     }
 
     /**

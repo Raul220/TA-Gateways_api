@@ -1,6 +1,7 @@
 <?php
 
-
+use App\Gateway;
+use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,4 +19,12 @@ Route::get('/', function () {
 
 Route::get('/gateways', 'GatewayController@index');
 Route::post('/gateways/add', 'GatewayController@add');
+Route::post('/gateways/show', 'GatewayController@show');
+Route::post('/gateways/update', 'GatewayController@update');
 Route::post('/peripherals/add', 'PeripheralController@add');
+
+// Route::get('/gateways/show', function () {
+//     $gateway = Gateway::where('id' == 1)->with('peripherals')->get();
+//     // $peripherals = $gateway->peripherals()->get();
+//     return json_encode(array('statusCode' => 200, 'gateway' => $gateway));
+// });
