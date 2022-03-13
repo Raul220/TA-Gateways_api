@@ -103,8 +103,13 @@ class GatewayController extends Controller
      * @param  \App\Gateway  $gateway
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Gateway $gateway)
+    public function destroy()
     {
-        //
+        $_POST = json_decode(file_get_contents("php://input"),true);
+        $id = $_POST['id'];
+        $gateway = Gateway::findOrFail($id);
+        $gateway->peripherals()->delete();
+        $gateway->delete();
+        return json_encode(array('statusCode' => 200));
     }
 }
