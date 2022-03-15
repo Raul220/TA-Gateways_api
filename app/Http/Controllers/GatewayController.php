@@ -49,13 +49,18 @@ class GatewayController extends Controller
         //
     }
 
+    public function show($id){
+        $gateway = Gateway::findOrFail($id);
+        return json_encode(array('statusCode' => 200, 'gateway' => $gateway));
+    }
+
     /**
      * Display the specified resource.
      *
      * @param  \App\Gateway  $gateway
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function get()
     {
         $_POST = json_decode(file_get_contents("php://input"),true);
         $prp = $_POST['id'];
@@ -83,7 +88,7 @@ class GatewayController extends Controller
      * @param  \App\Gateway  $gateway
      * @return \Illuminate\Http\Response
      */
-    public function update()
+    public function modify()
     {
         $_POST = json_decode(file_get_contents("php://input"),true);
         $gtw = $_POST['data'];
@@ -95,6 +100,11 @@ class GatewayController extends Controller
         $gateway->update($new);
         $gateway->peripherals()->delete();
         return json_encode(array('statusCode' => 200));
+    }
+
+    public function update()
+    {
+        //
     }
 
     /**

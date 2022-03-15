@@ -18,4 +18,17 @@ class ExampleTest extends TestCase
 
         $response->assertStatus(200);
     }
+
+    public function testGetGatewaysTest()
+    {
+        $response = $this->get('/gateways');
+        $response->assertStatus(200);
+    }
+
+    public function testGetGatewaysByIDTest()
+    {
+        $response = $this->get('/gateways/1');
+        $response->assertStatus(200);
+    }
+
 }

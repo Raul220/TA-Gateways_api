@@ -17,9 +17,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/gateways', 'GatewayController@index');
+Route::resource('/gateways', 'GatewayController');
 Route::post('/gateways/add', 'GatewayController@add');
-Route::post('/gateways/show', 'GatewayController@show');
-Route::post('/gateways/update', 'GatewayController@update');
+Route::post('/gateways/get-by-id', 'GatewayController@get');
+Route::post('/gateways/update', 'GatewayController@modify');
 Route::post('/gateways/destroy', 'GatewayController@destroy');
 Route::post('/peripherals/add', 'PeripheralController@add');
